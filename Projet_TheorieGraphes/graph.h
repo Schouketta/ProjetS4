@@ -3,18 +3,15 @@
 
 /**************************************************************
     Ici sont proposées 3 classes fondamentales
-<<<<<<< HEAD
-            Vertex (=Sommet)
+
             Arete (=Arête ou Arc)
-=======
+
             Sommet (=Sommet)
-            Edge (=Arête ou Arc)
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
             Graph (=Graphe)
 
     Les arêtes et les sommets et le graphe qu'ils constituent
     "travaillent" étroitement ensemble : pour cette raison les
-<<<<<<< HEAD
+
     Vertex et Arete se déclarent amis (friend) de Graph pour que
     ce dernier puisse librement accéder aux membres (y compris
     protected ou private) de Vertex et Arete.
@@ -106,13 +103,10 @@ class SommetInterface
 {
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
-<<<<<<< HEAD
-    friend class Vertex;
-    friend class AreteInterface;
-=======
+
     friend class Sommet;
     friend class EdgeInterface;
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
+
     friend class Graph;
 
     private :
@@ -152,15 +146,10 @@ class Sommet
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
     friend class Graph;
-<<<<<<< HEAD
-    friend class VertexInterface;
-    friend class Arete;
-    friend class AreteInterface;
-=======
+
     friend class SommetInterface;
     friend class Edge;
     friend class EdgeInterface;
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 
     private :
         /// liste des indices des arcs arrivant au sommet : accès aux prédécesseurs
@@ -229,11 +218,9 @@ class AreteInterface
 
         // Le constructeur met en place les éléments de l'interface
         // voir l'implémentation dans le .cpp
-<<<<<<< HEAD
+
         AreteInterface(Vertex& from, Vertex& to);
-=======
-        EdgeInterface(Sommet& from, Sommet& to);
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
+
 };
 
 

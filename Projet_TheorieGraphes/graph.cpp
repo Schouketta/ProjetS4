@@ -73,11 +73,9 @@ void Sommet::post_update()
 ****************************************************/
 
 /// Le constructeur met en place les éléments de l'interface
-<<<<<<< HEAD
+
 AreteInterface::AreteInterface(Vertex& from, Vertex& to)
-=======
-EdgeInterface::EdgeInterface(Sommet& from, Sommet& to)
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
+
 {
     // Le WidgetArete de l'interface de l'arc
     if ( !(from.m_interface && to.m_interface) )
