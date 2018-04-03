@@ -5,8 +5,14 @@
     Ici sont proposées 3 classes fondamentales
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+            Vertex (=Sommet)
+            Arete (=Arête ou Arc)
+=======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
             Vertex (=Sommet)
             Arete (=Arête ou Arc)
 =======
@@ -23,6 +29,7 @@
 
     Les arêtes et les sommets et le graphe qu'ils constituent
     "travaillent" étroitement ensemble : pour cette raison les
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     Sommet et Edge se déclarent amis (friend) de Graph pour que
@@ -45,6 +52,16 @@
 <<<<<<< HEAD
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
+    Vertex et Arete se déclarent amis (friend) de Graph pour que
+    ce dernier puisse librement accéder aux membres (y compris
+    protected ou private) de Vertex et Arete.
+=======
+    Sommet et Edge se déclarent amis (friend) de Graph pour que
+    ce dernier puisse librement accéder aux membres (y compris
+    protected ou private) de Sommet et Edge.
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 
     Ces Classes peuvent êtres complétées. Il est également possible
@@ -86,10 +103,13 @@
     C'est cette 2ème approche qui est proposée ici : dans la classe graphe vous trouverez
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         -> map<int, Edge>   m_edges
         -> map<int, Sommet> m_vertices    (le pluriel de Sommet est vertices)
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
         -> map<int, Arete>   m_Aretes
@@ -111,10 +131,21 @@
         -> map<int, Sommet> m_vertices    (le pluriel de Sommet est vertices)
 
     Il faudra être attentif au fait que par rapport à un simple vecteur, le parcours des éléments
+    ne pourra PAS se faire avec un simple for (int i=0; i<m_Aretes.size(); ++i) ...m_Aretes[i]...
+    et que les parcours à itérateur ne donneront pas directement des Arete ou des Vertex
+=======
+        -> map<int, Edge>   m_edges
+        -> map<int, Sommet> m_vertices    (le pluriel de Sommet est vertices)
+
+    Il faudra être attentif au fait que par rapport à un simple vecteur, le parcours des éléments
     ne pourra PAS se faire avec un simple for (int i=0; i<m_edges.size(); ++i) ...m_edges[i]...
     et que les parcours à itérateur ne donneront pas directement des Edge ou des Sommet
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
@@ -153,8 +184,14 @@ class SommetInterface
     // directement aux attributs (y compris privés)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+    friend class Vertex;
+    friend class AreteInterface;
+=======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
     friend class Vertex;
     friend class AreteInterface;
 =======
@@ -208,8 +245,11 @@ class Sommet
     friend class Graph;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
     friend class VertexInterface;
@@ -217,6 +257,9 @@ class Sommet
     friend class AreteInterface;
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
@@ -294,9 +337,12 @@ class AreteInterface
         // voir l'implémentation dans le .cpp
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         EdgeInterface(Sommet& from, Sommet& to);
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
         AreteInterface(Vertex& from, Vertex& to);
@@ -304,6 +350,9 @@ class AreteInterface
         EdgeInterface(Sommet& from, Sommet& to);
 >>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
@@ -406,8 +455,14 @@ class Graph
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+        void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
+        void add_interfaced_Arete(int idx, int vert1, int vert2, double weight=0);
+=======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_Arete(int idx, int vert1, int vert2, double weight=0);
 =======

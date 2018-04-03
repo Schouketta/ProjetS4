@@ -75,9 +75,12 @@ void Sommet::post_update()
 /// Le constructeur met en place les éléments de l'interface
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 EdgeInterface::EdgeInterface(Sommet& from, Sommet& to)
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 AreteInterface::AreteInterface(Vertex& from, Vertex& to)
@@ -85,6 +88,9 @@ AreteInterface::AreteInterface(Vertex& from, Vertex& to)
 EdgeInterface::EdgeInterface(Sommet& from, Sommet& to)
 >>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
@@ -180,6 +186,7 @@ void Graph::make_example()
     // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     add_interfaced_Sommet(0, 30.0, 200, 100, "thon.jpg");
     add_interfaced_Sommet(1, 60.0, 400, 100, "homme.jpg");
@@ -228,6 +235,19 @@ void Graph::make_example()
     /// Les arcs doivent être définis entre des sommets qui existent !
     // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
+    add_interfaced_Sommet(0, 30.0, 200, 100, "clown1.jpg");
+    add_interfaced_Sommet(1, 60.0, 400, 100, "clown2.jpg");
+    add_interfaced_Sommet(2,  50.0, 200, 300, "clown3.jpg");
+    add_interfaced_Sommet(3,  0.0, 400, 300, "clown4.jpg");
+    add_interfaced_Sommet(4,  100.0, 600, 300, "clown5.jpg");
+    add_interfaced_Sommet(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
+    add_interfaced_Sommet(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
+    add_interfaced_Sommet(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
+
+    /// Les arcs doivent être définis entre des sommets qui existent !
+    // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
     add_interfaced_Arete(0, 1, 2, 50.0);
     add_interfaced_Arete(1, 0, 1, 50.0);
     add_interfaced_Arete(2, 1, 3, 75.0);
@@ -239,6 +259,9 @@ void Graph::make_example()
     add_interfaced_Arete(8, 5, 2, 20.0);
     add_interfaced_Arete(9, 3, 7, 80.0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
