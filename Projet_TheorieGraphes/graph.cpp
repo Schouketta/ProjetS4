@@ -1,11 +1,11 @@
 #include "graph.h"
 
 /***************************************************
-                    VERTEX
+                    Sommet
 ****************************************************/
 
 /// Le constructeur met en place les éléments de l'interface
-VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, int pic_idx)
+SommetInterface::SommetInterface(int idx, int x, int y, std::string pic_name, int pic_idx)
 {
     // La boite englobante
     m_top_box.set_pos(x, y);
@@ -42,8 +42,8 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
 }
 
 
-/// Gestion du Vertex avant l'appel à l'interface
-void Vertex::pre_update()
+/// Gestion du Sommet avant l'appel à l'interface
+void Sommet::pre_update()
 {
     if (!m_interface)
         return;
@@ -56,8 +56,8 @@ void Vertex::pre_update()
 }
 
 
-/// Gestion du Vertex après l'appel à l'interface
-void Vertex::post_update()
+/// Gestion du Sommet après l'appel à l'interface
+void Sommet::post_update()
 {
     if (!m_interface)
         return;
@@ -73,7 +73,11 @@ void Vertex::post_update()
 ****************************************************/
 
 /// Le constructeur met en place les éléments de l'interface
+<<<<<<< HEAD
 AreteInterface::AreteInterface(Vertex& from, Vertex& to)
+=======
+EdgeInterface::EdgeInterface(Sommet& from, Sommet& to)
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 {
     // Le WidgetArete de l'interface de l'arc
     if ( !(from.m_interface && to.m_interface) )
@@ -164,14 +168,14 @@ void Graph::make_example()
 
     /// Les sommets doivent être définis avant les arcs
     // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
-    add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
-    add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
-    add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
-    add_interfaced_vertex(3,  0.0, 400, 300, "clown4.jpg");
-    add_interfaced_vertex(4,  100.0, 600, 300, "clown5.jpg");
-    add_interfaced_vertex(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
-    add_interfaced_vertex(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
-    add_interfaced_vertex(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
+    add_interfaced_Sommet(0, 30.0, 200, 100, "clown1.jpg");
+    add_interfaced_Sommet(1, 60.0, 400, 100, "clown2.jpg");
+    add_interfaced_Sommet(2,  50.0, 200, 300, "clown3.jpg");
+    add_interfaced_Sommet(3,  0.0, 400, 300, "clown4.jpg");
+    add_interfaced_Sommet(4,  100.0, 600, 300, "clown5.jpg");
+    add_interfaced_Sommet(5,  0.0, 100, 500, "bad_clowns_xx3xx.jpg", 0);
+    add_interfaced_Sommet(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
+    add_interfaced_Sommet(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
 
     /// Les arcs doivent être définis entre des sommets qui existent !
     // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
@@ -210,19 +214,19 @@ void Graph::update()
 }
 
 /// Aide à l'ajout de sommets interfacés
-void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx )
+void Graph::add_interfaced_Sommet(int idx, double value, int x, int y, std::string pic_name, int pic_idx )
 {
     if ( m_vertices.find(idx)!=m_vertices.end() )
     {
-        std::cerr << "Error adding vertex at idx=" << idx << " already used..." << std::endl;
-        throw "Error adding vertex";
+        std::cerr << "Error adding Sommet at idx=" << idx << " already used..." << std::endl;
+        throw "Error adding Sommet";
     }
     // Création d'une interface de sommet
-    VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
+    SommetInterface *vi = new SommetInterface(idx, x, y, pic_name, pic_idx);
     // Ajout de la top box de l'interface de sommet
     m_interface->m_main_box.add_child(vi->m_top_box);
     // On peut ajouter directement des vertices dans la map avec la notation crochet :
-    m_vertices[idx] = Vertex(value, vi);
+    m_vertices[idx] = Sommet(value, vi);
 }
 
 /// Aide à l'ajout d'arcs interfacés

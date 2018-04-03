@@ -3,15 +3,26 @@
 
 /**************************************************************
     Ici sont proposées 3 classes fondamentales
+<<<<<<< HEAD
             Vertex (=Sommet)
             Arete (=Arête ou Arc)
+=======
+            Sommet (=Sommet)
+            Edge (=Arête ou Arc)
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
             Graph (=Graphe)
 
     Les arêtes et les sommets et le graphe qu'ils constituent
     "travaillent" étroitement ensemble : pour cette raison les
+<<<<<<< HEAD
     Vertex et Arete se déclarent amis (friend) de Graph pour que
     ce dernier puisse librement accéder aux membres (y compris
     protected ou private) de Vertex et Arete.
+=======
+    Sommet et Edge se déclarent amis (friend) de Graph pour que
+    ce dernier puisse librement accéder aux membres (y compris
+    protected ou private) de Sommet et Edge.
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 
     Ces Classes peuvent êtres complétées. Il est également possible
     de les dériver mais il est malheureusement assez difficile
@@ -50,12 +61,21 @@
       qui associe un objet arc ou sommet à des indices arbitraires (pas forcément contigus)
 
     C'est cette 2ème approche qui est proposée ici : dans la classe graphe vous trouverez
+<<<<<<< HEAD
         -> map<int, Arete>   m_Aretes
         -> map<int, Vertex> m_vertices    (le pluriel de vertex est vertices)
 
     Il faudra être attentif au fait que par rapport à un simple vecteur, le parcours des éléments
     ne pourra PAS se faire avec un simple for (int i=0; i<m_Aretes.size(); ++i) ...m_Aretes[i]...
     et que les parcours à itérateur ne donneront pas directement des Arete ou des Vertex
+=======
+        -> map<int, Edge>   m_edges
+        -> map<int, Sommet> m_vertices    (le pluriel de Sommet est vertices)
+
+    Il faudra être attentif au fait que par rapport à un simple vecteur, le parcours des éléments
+    ne pourra PAS se faire avec un simple for (int i=0; i<m_edges.size(); ++i) ...m_edges[i]...
+    et que les parcours à itérateur ne donneront pas directement des Edge ou des Sommet
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
     mais des pairs, l'objet d'intérêt se trouvant dans "second" ("first" contenant l'indice)
                 for (auto &it = m_Aretes.begin(); it!=m_Aretes.end(); ++it) ...it->second...
     ou bien     for (auto &e : m_Aretes) ...e.second...
@@ -79,15 +99,20 @@
 #include "grman/grman.h"
 
 /***************************************************
-                    VERTEX
+                    Sommet
 ****************************************************/
 
-class VertexInterface
+class SommetInterface
 {
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
+<<<<<<< HEAD
     friend class Vertex;
     friend class AreteInterface;
+=======
+    friend class Sommet;
+    friend class EdgeInterface;
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
     friend class Graph;
 
     private :
@@ -118,18 +143,24 @@ class VertexInterface
 
         // Le constructeur met en place les éléments de l'interface
         // voir l'implémentation dans le .cpp
-        VertexInterface(int idx, int x, int y, std::string pic_name="", int pic_idx=0);
+        SommetInterface(int idx, int x, int y, std::string pic_name="", int pic_idx=0);
 };
 
 
-class Vertex
+class Sommet
 {
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
     friend class Graph;
+<<<<<<< HEAD
     friend class VertexInterface;
     friend class Arete;
     friend class AreteInterface;
+=======
+    friend class SommetInterface;
+    friend class Edge;
+    friend class EdgeInterface;
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 
     private :
         /// liste des indices des arcs arrivant au sommet : accès aux prédécesseurs
@@ -142,22 +173,22 @@ class Vertex
         double m_value;
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
-        std::shared_ptr<VertexInterface> m_interface = nullptr;
+        std::shared_ptr<SommetInterface> m_interface = nullptr;
 
         // Docu shared_ptr : https://msdn.microsoft.com/fr-fr/library/hh279669.aspx
         // La ligne précédente est en gros équivalent à la ligne suivante :
-        // VertexInterface * m_interface = nullptr;
+        // SommetInterface * m_interface = nullptr;
 
 
     public:
 
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
-        Vertex (double value=0, VertexInterface *interface=nullptr) :
+        Sommet (double value=0, SommetInterface *interface=nullptr) :
             m_value(value), m_interface(interface)  {  }
 
-        /// Vertex étant géré par Graph ce sera la méthode update de graph qui appellera
-        /// le pre_update et post_update de Vertex (pas directement la boucle de jeu)
+        /// Sommet étant géré par Graph ce sera la méthode update de graph qui appellera
+        /// le pre_update et post_update de Sommet (pas directement la boucle de jeu)
         /// Voir l'implémentation Graph::update dans le .cpp
         void pre_update();
         void post_update();
@@ -198,7 +229,11 @@ class AreteInterface
 
         // Le constructeur met en place les éléments de l'interface
         // voir l'implémentation dans le .cpp
+<<<<<<< HEAD
         AreteInterface(Vertex& from, Vertex& to);
+=======
+        EdgeInterface(Sommet& from, Sommet& to);
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 };
 
 
@@ -283,7 +318,7 @@ class Graph
         std::map<int, Arete> m_Aretes;
 
         /// La liste des sommets
-        std::map<int, Vertex> m_vertices;
+        std::map<int, Sommet> m_vertices;
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<GraphInterface> m_interface = nullptr;
@@ -296,8 +331,13 @@ class Graph
         Graph (GraphInterface *interface=nullptr) :
             m_interface(interface)  {  }
 
+<<<<<<< HEAD
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_Arete(int idx, int vert1, int vert2, double weight=0);
+=======
+        void add_interfaced_Sommet(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
+        void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
+>>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 
         /// Méthode spéciale qui construit un graphe arbitraire (démo)
         /// Voir implémentation dans le .cpp
