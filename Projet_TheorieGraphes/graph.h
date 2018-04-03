@@ -3,15 +3,15 @@
 
 /**************************************************************
     Ici sont proposées 3 classes fondamentales
-            Vertex (=Sommet)
+            Sommet (=Sommet)
             Edge (=Arête ou Arc)
             Graph (=Graphe)
 
     Les arêtes et les sommets et le graphe qu'ils constituent
     "travaillent" étroitement ensemble : pour cette raison les
-    Vertex et Edge se déclarent amis (friend) de Graph pour que
+    Sommet et Edge se déclarent amis (friend) de Graph pour que
     ce dernier puisse librement accéder aux membres (y compris
-    protected ou private) de Vertex et Edge.
+    protected ou private) de Sommet et Edge.
 
     Ces Classes peuvent êtres complétées. Il est également possible
     de les dériver mais il est malheureusement assez difficile
@@ -51,11 +51,11 @@
 
     C'est cette 2ème approche qui est proposée ici : dans la classe graphe vous trouverez
         -> map<int, Edge>   m_edges
-        -> map<int, Vertex> m_vertices    (le pluriel de vertex est vertices)
+        -> map<int, Sommet> m_vertices    (le pluriel de Sommet est vertices)
 
     Il faudra être attentif au fait que par rapport à un simple vecteur, le parcours des éléments
     ne pourra PAS se faire avec un simple for (int i=0; i<m_edges.size(); ++i) ...m_edges[i]...
-    et que les parcours à itérateur ne donneront pas directement des Edge ou des Vertex
+    et que les parcours à itérateur ne donneront pas directement des Edge ou des Sommet
     mais des pairs, l'objet d'intérêt se trouvant dans "second" ("first" contenant l'indice)
                 for (auto &it = m_edges.begin(); it!=m_edges.end(); ++it) ...it->second...
     ou bien     for (auto &e : m_edges) ...e.second...
@@ -79,14 +79,14 @@
 #include "grman/grman.h"
 
 /***************************************************
-                    VERTEX
+                    Sommet
 ****************************************************/
 
-class VertexInterface
+class SommetInterface
 {
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
-    friend class Vertex;
+    friend class Sommet;
     friend class EdgeInterface;
     friend class Graph;
 
@@ -118,16 +118,16 @@ class VertexInterface
 
         // Le constructeur met en place les éléments de l'interface
         // voir l'implémentation dans le .cpp
-        VertexInterface(int idx, int x, int y, std::string pic_name="", int pic_idx=0);
+        SommetInterface(int idx, int x, int y, std::string pic_name="", int pic_idx=0);
 };
 
 
-class Vertex
+class Sommet
 {
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
     friend class Graph;
-    friend class VertexInterface;
+    friend class SommetInterface;
     friend class Edge;
     friend class EdgeInterface;
 
@@ -142,22 +142,22 @@ class Vertex
         double m_value;
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
-        std::shared_ptr<VertexInterface> m_interface = nullptr;
+        std::shared_ptr<SommetInterface> m_interface = nullptr;
 
         // Docu shared_ptr : https://msdn.microsoft.com/fr-fr/library/hh279669.aspx
         // La ligne précédente est en gros équivalent à la ligne suivante :
-        // VertexInterface * m_interface = nullptr;
+        // SommetInterface * m_interface = nullptr;
 
 
     public:
 
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
-        Vertex (double value=0, VertexInterface *interface=nullptr) :
+        Sommet (double value=0, SommetInterface *interface=nullptr) :
             m_value(value), m_interface(interface)  {  }
 
-        /// Vertex étant géré par Graph ce sera la méthode update de graph qui appellera
-        /// le pre_update et post_update de Vertex (pas directement la boucle de jeu)
+        /// Sommet étant géré par Graph ce sera la méthode update de graph qui appellera
+        /// le pre_update et post_update de Sommet (pas directement la boucle de jeu)
         /// Voir l'implémentation Graph::update dans le .cpp
         void pre_update();
         void post_update();
@@ -198,7 +198,7 @@ class EdgeInterface
 
         // Le constructeur met en place les éléments de l'interface
         // voir l'implémentation dans le .cpp
-        EdgeInterface(Vertex& from, Vertex& to);
+        EdgeInterface(Sommet& from, Sommet& to);
 };
 
 
@@ -283,7 +283,7 @@ class Graph
         std::map<int, Edge> m_edges;
 
         /// La liste des sommets
-        std::map<int, Vertex> m_vertices;
+        std::map<int, Sommet> m_vertices;
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<GraphInterface> m_interface = nullptr;
@@ -296,7 +296,7 @@ class Graph
         Graph (GraphInterface *interface=nullptr) :
             m_interface(interface)  {  }
 
-        void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
+        void add_interfaced_Sommet(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
         void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
         /// Méthode spéciale qui construit un graphe arbitraire (démo)
