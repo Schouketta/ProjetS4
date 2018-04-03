@@ -69,42 +69,42 @@ void Vertex::post_update()
 
 
 /***************************************************
-                    EDGE
+                    Arete
 ****************************************************/
 
 /// Le constructeur met en place les éléments de l'interface
-EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
+AreteInterface::AreteInterface(Vertex& from, Vertex& to)
 {
-    // Le WidgetEdge de l'interface de l'arc
+    // Le WidgetArete de l'interface de l'arc
     if ( !(from.m_interface && to.m_interface) )
     {
-        std::cerr << "Error creating EdgeInterface between vertices having no interface" << std::endl;
-        throw "Bad EdgeInterface instanciation";
+        std::cerr << "Error creating AreteInterface between vertices having no interface" << std::endl;
+        throw "Bad AreteInterface instanciation";
     }
-    m_top_edge.attach_from(from.m_interface->m_top_box);
-    m_top_edge.attach_to(to.m_interface->m_top_box);
-    m_top_edge.reset_arrow_with_bullet();
+    m_top_Arete.attach_from(from.m_interface->m_top_box);
+    m_top_Arete.attach_to(to.m_interface->m_top_box);
+    m_top_Arete.reset_arrow_with_bullet();
 
     // Une boite pour englober les widgets de réglage associés
-    m_top_edge.add_child(m_box_edge);
-    m_box_edge.set_dim(24,60);
-    m_box_edge.set_bg_color(BLANCBLEU);
+    m_top_Arete.add_child(m_box_Arete);
+    m_box_Arete.set_dim(24,60);
+    m_box_Arete.set_bg_color(BLANCBLEU);
 
     // Le slider de réglage de valeur
-    m_box_edge.add_child( m_slider_weight );
+    m_box_Arete.add_child( m_slider_weight );
     m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
     m_slider_weight.set_dim(16,40);
     m_slider_weight.set_gravity_y(grman::GravityY::Up);
 
     // Label de visualisation de valeur
-    m_box_edge.add_child( m_label_weight );
+    m_box_Arete.add_child( m_label_weight );
     m_label_weight.set_gravity_y(grman::GravityY::Down);
 
 }
 
 
-/// Gestion du Edge avant l'appel à l'interface
-void Edge::pre_update()
+/// Gestion du Arete avant l'appel à l'interface
+void Arete::pre_update()
 {
     if (!m_interface)
         return;
@@ -116,8 +116,8 @@ void Edge::pre_update()
     m_interface->m_label_weight.set_message( std::to_string( (int)m_weight ) );
 }
 
-/// Gestion du Edge après l'appel à l'interface
-void Edge::post_update()
+/// Gestion du Arete après l'appel à l'interface
+void Arete::post_update()
 {
     if (!m_interface)
         return;
@@ -175,16 +175,16 @@ void Graph::make_example()
 
     /// Les arcs doivent être définis entre des sommets qui existent !
     // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
-    add_interfaced_edge(0, 1, 2, 50.0);
-    add_interfaced_edge(1, 0, 1, 50.0);
-    add_interfaced_edge(2, 1, 3, 75.0);
-    add_interfaced_edge(3, 4, 1, 25.0);
-    add_interfaced_edge(4, 6, 3, 25.0);
-    add_interfaced_edge(5, 7, 3, 25.0);
-    add_interfaced_edge(6, 3, 4, 0.0);
-    add_interfaced_edge(7, 2, 0, 100.0);
-    add_interfaced_edge(8, 5, 2, 20.0);
-    add_interfaced_edge(9, 3, 7, 80.0);
+    add_interfaced_Arete(0, 1, 2, 50.0);
+    add_interfaced_Arete(1, 0, 1, 50.0);
+    add_interfaced_Arete(2, 1, 3, 75.0);
+    add_interfaced_Arete(3, 4, 1, 25.0);
+    add_interfaced_Arete(4, 6, 3, 25.0);
+    add_interfaced_Arete(5, 7, 3, 25.0);
+    add_interfaced_Arete(6, 3, 4, 0.0);
+    add_interfaced_Arete(7, 2, 0, 100.0);
+    add_interfaced_Arete(8, 5, 2, 20.0);
+    add_interfaced_Arete(9, 3, 7, 80.0);
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
@@ -196,7 +196,7 @@ void Graph::update()
     for (auto &elt : m_vertices)
         elt.second.pre_update();
 
-    for (auto &elt : m_edges)
+    for (auto &elt : m_Aretes)
         elt.second.pre_update();
 
     m_interface->m_top_box.update();
@@ -204,7 +204,7 @@ void Graph::update()
     for (auto &elt : m_vertices)
         elt.second.post_update();
 
-    for (auto &elt : m_edges)
+    for (auto &elt : m_Aretes)
         elt.second.post_update();
 
 }
@@ -226,22 +226,22 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
 }
 
 /// Aide à l'ajout d'arcs interfacés
-void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weight)
+void Graph::add_interfaced_Arete(int idx, int id_vert1, int id_vert2, double weight)
 {
-    if ( m_edges.find(idx)!=m_edges.end() )
+    if ( m_Aretes.find(idx)!=m_Aretes.end() )
     {
-        std::cerr << "Error adding edge at idx=" << idx << " already used..." << std::endl;
-        throw "Error adding edge";
+        std::cerr << "Error adding Arete at idx=" << idx << " already used..." << std::endl;
+        throw "Error adding Arete";
     }
 
     if ( m_vertices.find(id_vert1)==m_vertices.end() || m_vertices.find(id_vert2)==m_vertices.end() )
     {
-        std::cerr << "Error adding edge idx=" << idx << " between vertices " << id_vert1 << " and " << id_vert2 << " not in m_vertices" << std::endl;
-        throw "Error adding edge";
+        std::cerr << "Error adding Arete idx=" << idx << " between vertices " << id_vert1 << " and " << id_vert2 << " not in m_vertices" << std::endl;
+        throw "Error adding Arete";
     }
 
-    EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
-    m_interface->m_main_box.add_child(ei->m_top_edge);
-    m_edges[idx] = Edge(weight, ei);
+    AreteInterface *ei = new AreteInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
+    m_interface->m_main_box.add_child(ei->m_top_Arete);
+    m_Aretes[idx] = Arete(weight, ei);
 }
 

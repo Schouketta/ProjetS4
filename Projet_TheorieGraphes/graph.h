@@ -4,14 +4,14 @@
 /**************************************************************
     Ici sont proposées 3 classes fondamentales
             Vertex (=Sommet)
-            Edge (=Arête ou Arc)
+            Arete (=Arête ou Arc)
             Graph (=Graphe)
 
     Les arêtes et les sommets et le graphe qu'ils constituent
     "travaillent" étroitement ensemble : pour cette raison les
-    Vertex et Edge se déclarent amis (friend) de Graph pour que
+    Vertex et Arete se déclarent amis (friend) de Graph pour que
     ce dernier puisse librement accéder aux membres (y compris
-    protected ou private) de Vertex et Edge.
+    protected ou private) de Vertex et Arete.
 
     Ces Classes peuvent êtres complétées. Il est également possible
     de les dériver mais il est malheureusement assez difficile
@@ -50,15 +50,15 @@
       qui associe un objet arc ou sommet à des indices arbitraires (pas forcément contigus)
 
     C'est cette 2ème approche qui est proposée ici : dans la classe graphe vous trouverez
-        -> map<int, Edge>   m_edges
+        -> map<int, Arete>   m_Aretes
         -> map<int, Vertex> m_vertices    (le pluriel de vertex est vertices)
 
     Il faudra être attentif au fait que par rapport à un simple vecteur, le parcours des éléments
-    ne pourra PAS se faire avec un simple for (int i=0; i<m_edges.size(); ++i) ...m_edges[i]...
-    et que les parcours à itérateur ne donneront pas directement des Edge ou des Vertex
+    ne pourra PAS se faire avec un simple for (int i=0; i<m_Aretes.size(); ++i) ...m_Aretes[i]...
+    et que les parcours à itérateur ne donneront pas directement des Arete ou des Vertex
     mais des pairs, l'objet d'intérêt se trouvant dans "second" ("first" contenant l'indice)
-                for (auto &it = m_edges.begin(); it!=m_edges.end(); ++it) ...it->second...
-    ou bien     for (auto &e : m_edges) ...e.second...
+                for (auto &it = m_Aretes.begin(); it!=m_Aretes.end(); ++it) ...it->second...
+    ou bien     for (auto &e : m_Aretes) ...e.second...
 
     Il n'est pas obligatoire d'utiliser ces classes pour le projet, vous pouvez faire les votres
 
@@ -87,7 +87,7 @@ class VertexInterface
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
     friend class Vertex;
-    friend class EdgeInterface;
+    friend class AreteInterface;
     friend class Graph;
 
     private :
@@ -128,8 +128,8 @@ class Vertex
     // directement aux attributs (y compris privés)
     friend class Graph;
     friend class VertexInterface;
-    friend class Edge;
-    friend class EdgeInterface;
+    friend class Arete;
+    friend class AreteInterface;
 
     private :
         /// liste des indices des arcs arrivant au sommet : accès aux prédécesseurs
@@ -166,14 +166,14 @@ class Vertex
 
 
 /***************************************************
-                    EDGE
+                    Arete
 ****************************************************/
 
-class EdgeInterface
+class AreteInterface
 {
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
-    friend class Edge;
+    friend class Arete;
     friend class Graph;
 
     private :
@@ -182,11 +182,11 @@ class EdgeInterface
         /// ici un widget pour qu'il apparaisse, il faut aussi le mettre en place et
         /// le paramétrer ( voir l'implémentation du constructeur dans le .cpp )
 
-        // Le WidgetEdge qui "contient" toute l'interface d'un arc
-        grman::WidgetEdge m_top_edge;
+        // Le WidgetArete qui "contient" toute l'interface d'un arc
+        grman::WidgetArete m_top_Arete;
 
         // Une boite pour englober les widgets de réglage associés
-        grman::WidgetBox m_box_edge;
+        grman::WidgetBox m_box_Arete;
 
         // Un slider de visualisation/modification du poids valeur de l'arc
         grman::WidgetVSlider m_slider_weight;
@@ -198,16 +198,16 @@ class EdgeInterface
 
         // Le constructeur met en place les éléments de l'interface
         // voir l'implémentation dans le .cpp
-        EdgeInterface(Vertex& from, Vertex& to);
+        AreteInterface(Vertex& from, Vertex& to);
 };
 
 
-class Edge
+class Arete
 {
     // Les (methodes des) classes amies pourront accéder
     // directement aux attributs (y compris privés)
     friend class Graph;
-    friend class EdgeInterface;
+    friend class AreteInterface;
 
     private :
         /// indice du sommet de départ de l'arc
@@ -220,18 +220,18 @@ class Edge
         double m_weight;
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
-        std::shared_ptr<EdgeInterface> m_interface = nullptr;
+        std::shared_ptr<AreteInterface> m_interface = nullptr;
 
 
     public:
 
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
-        Edge (double weight=0, EdgeInterface *interface=nullptr) :
+        Arete (double weight=0, AreteInterface *interface=nullptr) :
             m_weight(weight), m_interface(interface)  {  }
 
-        /// Edge étant géré par Graph ce sera la méthode update de graph qui appellera
-        /// le pre_update et post_update de Edge (pas directement la boucle de jeu)
+        /// Arete étant géré par Graph ce sera la méthode update de graph qui appellera
+        /// le pre_update et post_update de Arete (pas directement la boucle de jeu)
         /// Voir l'implémentation Graph::update dans le .cpp
         void pre_update();
         void post_update();
@@ -280,7 +280,7 @@ class Graph
     private :
 
         /// La "liste" des arêtes
-        std::map<int, Edge> m_edges;
+        std::map<int, Arete> m_Aretes;
 
         /// La liste des sommets
         std::map<int, Vertex> m_vertices;
@@ -297,7 +297,7 @@ class Graph
             m_interface(interface)  {  }
 
         void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
-        void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
+        void add_interfaced_Arete(int idx, int vert1, int vert2, double weight=0);
 
         /// Méthode spéciale qui construit un graphe arbitraire (démo)
         /// Voir implémentation dans le .cpp

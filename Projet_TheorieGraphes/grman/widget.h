@@ -369,11 +369,11 @@ class WidgetBox : public Widget
 
 
 /***************************************************
-                    EDGE
+                    Arete
 ****************************************************/
 
 /// Différents éléments de décoration des flèches
-/// Ceci peut être étendu en étendant le code WidgetEdge::draw
+/// Ceci peut être étendu en étendant le code WidgetArete::draw
 enum class ArrowItemType
 {
     Arrow,
@@ -399,7 +399,7 @@ struct ArrowItem
         m_type(type), m_position(position), m_size(size), m_proportion(proportion) {}
 };
 
-class WidgetEdge : public Widget
+class WidgetArete : public Widget
 {
     protected :
 
