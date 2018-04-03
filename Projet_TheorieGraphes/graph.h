@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
             Vertex (=Sommet)
@@ -22,13 +23,17 @@
             Arete (=Arête ou Arc)
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
+
+            Arete (=Arête ou Arc)
+
+>>>>>>> 1322319988ca7089e5486448cb62a4aaa662e2f0
             Sommet (=Sommet)
-            Edge (=Arête ou Arc)
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
             Graph (=Graphe)
 
     Les arêtes et les sommets et le graphe qu'ils constituent
     "travaillent" étroitement ensemble : pour cette raison les
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -54,6 +59,9 @@
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
+=======
+
+>>>>>>> 1322319988ca7089e5486448cb62a4aaa662e2f0
     Vertex et Arete se déclarent amis (friend) de Graph pour que
     ce dernier puisse librement accéder aux membres (y compris
     protected ou private) de Vertex et Arete.
@@ -185,6 +193,7 @@ class SommetInterface
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     friend class Vertex;
@@ -201,9 +210,12 @@ class SommetInterface
     friend class AreteInterface;
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
+
+>>>>>>> 1322319988ca7089e5486448cb62a4aaa662e2f0
     friend class Sommet;
     friend class EdgeInterface;
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
+
     friend class Graph;
 
     private :
@@ -246,6 +258,7 @@ class Sommet
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -263,10 +276,12 @@ class Sommet
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
+
+>>>>>>> 1322319988ca7089e5486448cb62a4aaa662e2f0
     friend class SommetInterface;
     friend class Edge;
     friend class EdgeInterface;
->>>>>>> 2f441d17ef098b4a9744c880a0633f80a55fcb42
 
     private :
         /// liste des indices des arcs arrivant au sommet : accès aux prédécesseurs
@@ -338,6 +353,7 @@ class AreteInterface
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         EdgeInterface(Sommet& from, Sommet& to);
 =======
 <<<<<<< HEAD
@@ -356,6 +372,11 @@ class AreteInterface
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
+
+        AreteInterface(Vertex& from, Vertex& to);
+
+>>>>>>> 1322319988ca7089e5486448cb62a4aaa662e2f0
 };
 
 

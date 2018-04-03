@@ -76,6 +76,7 @@ void Sommet::post_update()
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 EdgeInterface::EdgeInterface(Sommet& from, Sommet& to)
 =======
 <<<<<<< HEAD
@@ -94,6 +95,11 @@ EdgeInterface::EdgeInterface(Sommet& from, Sommet& to)
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
 =======
 >>>>>>> 2e08954864cae0adb9fe7fadd0f8dbbbe57bac2e
+=======
+
+AreteInterface::AreteInterface(Vertex& from, Vertex& to)
+
+>>>>>>> 1322319988ca7089e5486448cb62a4aaa662e2f0
 {
     // Le WidgetArete de l'interface de l'arc
     if ( !(from.m_interface && to.m_interface) )
