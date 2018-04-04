@@ -16,7 +16,8 @@ int main()
     g.construct_food_chain();
     g.afficherMap();
     g.supprimerSommet();
-    g.test_remove_arete(4);
+   // g.test_remove_arete(0);
+
     g.afficherMap();
    // g.supprimerSommet();
 
@@ -29,6 +30,7 @@ int main()
     {
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         g.update();
+    //     g.supprimerSommet();
 
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();

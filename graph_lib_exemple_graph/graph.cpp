@@ -210,6 +210,8 @@ void Graph::sauvegarderGraphe()
 
 void Graph::ajouterSommet()
 {
+int choix;
+cout<<"Quelle espece voulez-vous supprimer ? (Taper le n° de l'espece associe)"<<endl;
 
 }
 
@@ -220,21 +222,30 @@ void Graph::supprimerSommet()
     cin>>choix;
 
     auto it2 = m_vertices.find(choix); //m_vertices est la map <int, Sommet>
+    int a;
 
     cout<<"taille m_in : "<<(*it2).second.getm_in().size()<<" et taille m_out : "<<(*it2).second.getm_out().size()<<endl;
 
     ///on supprime toutes les arêtes entrantes au sommet
     for (int i=0; i<(*it2).second.getm_in().size(); i++) //on parcourt le vecteur d'int m_in correspondant aux indices des aretes entrantes au sommet
     {
-        cout<<"tour de boucle : "<<i<<endl;
-        test_remove_arete (it2->second.getm_in()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
+        a=it2->second.getm_in()[i];
+
+       cout<<"tour de boucle m_in : "<<i<<endl;
+       cout<< it2->second.getm_in()[i];
+        //test_remove_arete (it2->second.getm_in()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
+        test_remove_arete(a);//supprime l'arete d'indice it2->second.getm_in()[i]
     }
+
+
 
     ///on supprime toutes les arêtes sortantes au sommet
     for (int i=0; i<(*it2).second.getm_out().size(); i++)//on parcourt le vecteur d'int m_out correspondant aux indices des aretes sortantes au sommet
     {
-        cout<<"tour de boucle : "<<i<<endl;
-        test_remove_arete (it2->second.getm_out()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
+        a=it2->second.getm_out()[i];
+
+        cout<<"tour de boucle m_out : "<<i<<endl;
+        test_remove_arete (a);//supprime l'arete d'indice it2->second.getm_in()[i]
     }
 
 
