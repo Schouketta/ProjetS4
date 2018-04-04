@@ -215,91 +215,35 @@ void Graph::ajouterSommet()
 
 void Graph::supprimerSommet()
 {
-    int choix=0;
+    int choix;
     cout<<"Quelle espece voulez-vous supprimer ? (Taper le n° de l'espece associe)"<<endl;
     cin>>choix;
 
+    auto it2 = m_vertices.find(choix); //m_vertices est la map <int, Sommet>
 
-    std::map<int,Sommet> ::iterator it;
-    //std::vector<int>::iterator it1;
+    cout<<"taille m_in : "<<(*it2).second.getm_in().size()<<" et taille m_out : "<<(*it2).second.getm_out().size()<<endl;
 
-    auto it2 = m_vertices.find(choix);
-
-    for (int i=0; i<(*it2).second.getm_out().size(); i++)
+    ///on supprime toutes les arêtes entrantes au sommet
+    for (int i=0; i<(*it2).second.getm_in().size(); i++) //on parcourt le vecteur d'int m_in correspondant aux indices des aretes entrantes au sommet
     {
-        cout<<"test"<<it2->second.getm_out()[i];
+        cout<<"tour de boucle : "<<i<<endl;
+        test_remove_arete (it2->second.getm_in()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
     }
 
-    for (int i=0; i<(*it2).second.getm_in().size(); i++)
+    ///on supprime toutes les arêtes sortantes au sommet
+    for (int i=0; i<(*it2).second.getm_out().size(); i++)//on parcourt le vecteur d'int m_out correspondant aux indices des aretes sortantes au sommet
     {
-        test_remove_arete (it2->second.getm_in()[i]) ;
+        cout<<"tour de boucle : "<<i<<endl;
+        test_remove_arete (it2->second.getm_out()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
     }
-
-    for (int i=0; i<(*it2).second.getm_out().size(); i++)
-    {
-        test_remove_arete (it2->second.getm_out()[i]) ;
-    }
-
-//    for(it=m_vertices.begin(); it!=m_vertices.end(); it++)
-//    {
-//        if(it->first == choix)
-//        {
-//            for(it1=(*it).second.getm_in().size(); it1!=it->second.getm_in().end(); it1++)
-//            {
-//
-//            }
-//        }
-//    }
-
-
-
-
 
 
 }
 
 void Graph::afficherGraphe()
 {
-    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
-
-    std::map<int,Arete> ::iterator it5;
-
-    std::map<int,Sommet> ::iterator it;
-
-    for(it=m_vertices.begin(); it !=m_vertices.end(); it++)
-    {
-
-        //add_interfaced_Sommet(it->first, it->second.m_value, it->second.m_interface.x,  it->second.y, it->second.)
-    }
-
-    cout<<"dfhefuufeeu";
 
 
-    for(it5=m_Aretes.begin(); it5 !=m_Aretes.end(); it5++)
-    {
-        cout<<"avant"<<endl;
-        cout<<it5->first;
-        add_interfaced_Arete(it5->first,it5->second.m_from, it5->second.m_to, it5->second.m_weight);
-
-        cout<<"apres for"<<endl;
-    }
-
-//            for(int i=0; i<m_ordre; i++) //Pour remplir le tableau de Sommets (nom des individus) avec le fichier
-//        {
-//
-//            add_interfaced_Sommet(indice_sommet, jauge, x, y, image);
-//
-//
-//
-//        }
-//
-//        for(int i=0; i<m_nbArete; i++)
-//        {
-//            fichier>>indice_arc>>sommet_depart>>sommet_arrivee>>poids;
-//
-//            add_interfaced_Arete(indice_arc, sommet_depart, sommet_arrivee, poids);
-//
-//        }
 }
 
 void Graph::afficherMap()
