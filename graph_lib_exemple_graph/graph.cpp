@@ -30,8 +30,6 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 /// Méthode spéciale qui construit un graphe arbitraire (démo)
 /// Cette méthode est à enlever et remplacer par un système
 /// de chargement de fichiers par exemple.
-/// Bien sûr on ne veut pas que vos graphes soient construits
-/// "à la main" dans le code comme ça.
 void Graph::make_example()
 {
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
@@ -66,11 +64,9 @@ void Graph::make_example()
 void Graph::construct_food_chain()
 {
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
-    // La ligne précédente est en gros équivalente à :
-    // m_interface = new GraphInterface(50, 0, 750, 600);
+    // La ligne précédente équivalente à : m_interface = new GraphInterface(50, 0, 750, 600);
 
     chargerGraphe();
-
 
 
 }
@@ -205,13 +201,31 @@ void Graph::chargerGraphe()
 
 void Graph::sauvegarderGraphe()
 {
+std::ofstream fichier("graphetest.txt", ios::out | ios::trunc); // ouverture du fichier et écrase ce qui est déja présent(une page blanche
+    cout<<"saisie nouvel ordre"<<endl;
+    cin>>m_ordre;
+    if(fichier)
+    {
 
+        fichier << m_ordre;
+        fichier<<m_nbArete;
+        std::map<int,Sommet> ::iterator it;
+
+        for(it=m_vertices.begin(); it !=m_vertices.end(); it++)
+        {
+            fichier<<it->first<< it->second.m_indice<< it->second.m_value<<it->second.m_interface.x<<it->second.y<< it->second.image
+            cout<<it->second.m_value<<std::endl;
+        }
+       // fichier.close();
+
+
+
+
+    }
 }
 
 void Graph::ajouterSommet()
 {
-int choix;
-cout<<"Quelle espece voulez-vous supprimer ? (Taper le n° de l'espece associe)"<<endl;
 
 }
 
@@ -221,34 +235,47 @@ void Graph::supprimerSommet()
     cout<<"Quelle espece voulez-vous supprimer ? (Taper le n° de l'espece associe)"<<endl;
     cin>>choix;
 
+    ///Avant de pouvoir supprimer le sommet, il faut supprimer les arêtes du sommet
+
     auto it2 = m_vertices.find(choix); //m_vertices est la map <int, Sommet>
-    int a;
 
     cout<<"taille m_in : "<<(*it2).second.getm_in().size()<<" et taille m_out : "<<(*it2).second.getm_out().size()<<endl;
 
     ///on supprime toutes les arêtes entrantes au sommet
+
     for (int i=0; i<(*it2).second.getm_in().size(); i++) //on parcourt le vecteur d'int m_in correspondant aux indices des aretes entrantes au sommet
     {
-        a=it2->second.getm_in()[i];
-
-       cout<<"tour de boucle m_in : "<<i<<endl;
-       cout<< it2->second.getm_in()[i];
-        //test_remove_arete (it2->second.getm_in()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
-        test_remove_arete(a);//supprime l'arete d'indice it2->second.getm_in()[i]
+        cout<<"tour de boucle : "<<i<<endl;
+        test_remove_arete (it2->second.getm_in()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
     }
-
-
 
     ///on supprime toutes les arêtes sortantes au sommet
+
     for (int i=0; i<(*it2).second.getm_out().size(); i++)//on parcourt le vecteur d'int m_out correspondant aux indices des aretes sortantes au sommet
     {
-        a=it2->second.getm_out()[i];
-
-        cout<<"tour de boucle m_out : "<<i<<endl;
-        test_remove_arete (a);//supprime l'arete d'indice it2->second.getm_in()[i]
+        cout<<"tour de boucle : "<<i<<endl;
+        test_remove_arete (it2->second.getm_out()[i]);//supprime l'arete d'indice it2->second.getm_in()[i]
     }
 
+    ///Maintenant qu'on a suppirmé les arêtes du sommet :
+    ///Suppression du sommet lui-même
 
+    Sommet &remedi=m_vertices.at(choix);
+
+    std::cout << "SOMMET A SUPPRIMER : " << choix <<endl;
+
+    std::cout <<"Nb de sommets du graphe AVANT la suppresion"<< m_vertices.size() << std::endl;
+
+    if (m_interface && remedi.m_interface)
+    {
+
+        m_interface->m_main_box.remove_child( remedi.m_interface->m_top_box );
+
+    }
+
+    m_vertices.erase(choix);
+
+    std::cout <<"Nb de sommets du graphe APRES la suppresion"<< m_vertices.size() << std::endl;
 }
 
 void Graph::afficherGraphe()
@@ -293,75 +320,45 @@ void Graph::test_remove_arete(int eidx)
     std::cout << "Removing arete " << eidx << " " << remed.m_from << "->" << remed.m_to << " " << remed.m_weight << std::endl;
 
     /// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
-
     std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
-
     std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
-
     std::cout << m_Aretes.size() << std::endl;
 
-
-
     /// test : on a bien des éléments interfacés
-
     if (m_interface && remed.m_interface)
-
     {
-
         /// Ne pas oublier qu'on a fait ça à l'ajout de l'arc :
-
-        /* AreteInterface *ei = new AreteInterface(m_vertices[id_vert1], m_vertices[id_vert2]); */
-
-        /* m_interface->m_main_box.add_child(ei->m_top_Arete);  */
-
-        /* m_Aretes[idx] = Arete(weight, ei); */
+        /* AreteInterface *ei = new AreteInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
+           m_interface->m_main_box.add_child(ei->m_top_Arete);
+           m_Aretes[idx] = Arete(weight, ei); */
 
         /// Le new AreteInterface ne nécessite pas de delete car on a un shared_ptr
-
         /// Le Arete ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
-
         /// mais il faut bien enlever le conteneur d'interface m_top_Arete de l'arc de la main_box du graphe
 
         m_interface->m_main_box.remove_child( remed.m_interface->m_top_Arete );
 
     }
 
-
-
     /// Il reste encore à virer l'arc supprimé de la liste des entrants et sortants des 2 sommets to et from !
-
     /// References sur les listes de Aretes des sommets from et to
 
     std::vector<int> &vefrom = m_vertices[remed.m_from].m_out;
-
     std::vector<int> &veto = m_vertices[remed.m_to].m_in;
 
     vefrom.erase( std::remove( vefrom.begin(), vefrom.end(), eidx ), vefrom.end() );
-
     veto.erase( std::remove( veto.begin(), veto.end(), eidx ), veto.end() );
 
-
-
     /// Le Arete ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
-
     /// Il suffit donc de supprimer l'entrée de la map pour supprimer à la fois l'Arete et le AreteInterface
-
     /// mais malheureusement ceci n'enlevait pas automatiquement l'interface top_Arete en tant que child de main_box !
 
     m_Aretes.erase( eidx );
 
-
-
-
-
     /// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
-
     std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
-
     std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
-
     std::cout << m_Aretes.size() << std::endl;
-
 
 
 }
