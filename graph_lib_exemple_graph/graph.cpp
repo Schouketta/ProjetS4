@@ -1,6 +1,7 @@
 #include "graph.h"
 #include <fstream>
-#include <iostream>
+#include <iostream>"
+
 
 /***************************************************
                     GRAPH
@@ -202,20 +203,46 @@ void Graph::chargerGraphe()
 void Graph::sauvegarderGraphe()
 {
 std::ofstream fichier("graphetest.txt", ios::out | ios::trunc); // ouverture du fichier et écrase ce qui est déja présent(une page blanche
-    cout<<"saisie nouvel ordre"<<endl;
-    cin>>m_ordre;
+//    cout<<"saisie nouvel ordre"<<endl;
+//    cin>>m_ordre;
     if(fichier)
     {
+        cout <<"l'ordre:"<<m_ordre<<endl;
+        fichier << m_ordre<<endl;
+        fichier << m_nbArete<<endl<<endl;
 
-        fichier << m_ordre;
-        fichier<<m_nbArete;
         std::map<int,Sommet> ::iterator it;
 
         for(it=m_vertices.begin(); it !=m_vertices.end(); it++)
-        {
-            fichier<<it->first<< it->second.m_indice<< it->second.m_value<<it->second.m_interface.x<<it->second.y<< it->second.image
-            cout<<it->second.m_value<<std::endl;
-        }
+    {
+        fichier<<it->first<<endl;
+        fichier<<it->second.m_value<<std::endl;
+
+        fichier<<it->second.m_interface->m_top_box.get_posx()<<endl;
+        fichier<<it->second.m_interface->m_top_box.get_posy()<<endl;
+        fichier<<it->second.m_interface->m_img.getPicName()<<endl<<endl;
+
+    }
+
+    std::map<int,Arete> ::iterator it1;
+    for(it1=m_Aretes.begin(); it1 !=m_Aretes.end(); it1++)
+    {
+        fichier<<it1->first<<endl;
+
+        fichier<<it1->second.m_to<<endl;
+        fichier<<it1->second.m_from<<endl;
+        fichier<<it1->second.m_weight<<endl;
+
+        //ndice_arc>>sommet_depart>>sommet_arrivee>>poids;
+    }
+
+//        for(it=m_vertices.begin(); it !=m_vertices.end(); it++)
+//        {
+//            cout<<"euuuuuuuu"<<it->first<<endl;
+//
+            //fichier<<(*it).first<< it->second.m_indice << it->second.m_value<<it->second.m_interface->top_box.posx.;//<<it->second.y<< it->second.image // affiche juste une adresse
+//            cout<<it->second.m_value<<std::endl;
+//        }
        // fichier.close();
 
 

@@ -158,3 +158,85 @@
 	"Sommet.h"
 	"Arete.h"
 
+1522885044 source:c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\arete.cpp
+	"Arete.h"
+
+1522885044 c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\arete.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	"grman/grman.h"
+	"Sommet.h"
+
+1522885045 c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\grman\grman.h
+	<allegro.h>
+	<string>
+	"grman_couleurs.h"
+	"coords.h"
+	"widget.h"
+
+1522885045 c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\grman\grman_couleurs.h
+
+1522885045 c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\grman\coords.h
+	<cmath>
+
+1522923378 c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1522885045 c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\sommet.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	"grman/grman.h"
+
+1522885045 source:c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\grman\coords.cpp
+	"coords.h"
+
+1522885045 source:c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+
+1522885045 source:c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\grman\widget.cpp
+	"widget.h"
+
+1522885137 source:c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\main.cpp
+	"grman/grman.h"
+	<iostream>
+	<map>
+	"graph.h"
+
+1522885045 c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\graph.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	<iostream>
+	"grman/grman.h"
+	"Sommet.h"
+	"Arete.h"
+
+1522885045 source:c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\sommet.cpp
+	"Sommet.h"
+
+1522925112 source:c:\users\myriam\documents\github\projets4\graph_lib_exemple_graph\graph.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+

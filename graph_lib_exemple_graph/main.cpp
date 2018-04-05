@@ -15,7 +15,7 @@ int main()
     Graph g;
     g.construct_food_chain();
     g.afficherMap();
-    g.supprimerSommet();
+   // g.supprimerSommet();
     g.afficherMap();
     g.sauvegarderGraphe();
    // g.supprimerSommet();
