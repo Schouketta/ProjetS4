@@ -1,0 +1,44 @@
+9
+10
+
+0 araigneeloup 30.0 400 50 araignee-loup.jpg
+1 cloporte 60.0 250 400 cloporte.jpg
+2 earwig 50.0 550 200 earwig.jpg
+3 larve 5.0 250 200 larve.jpg
+4 lithobie 100.0 750 400 lithobie.jpg
+5 escargot 25.0 50 300 snail.jpg
+6 debrisvegetaux 100.0 300 600 terrefeuilles.jpg
+7 lombric 100.0 600 600 lombric.jpg
+8 carabide 100.0 400 200 carabide.jpg
+
+0 2 8 50.0
+1 8 0 50.0
+2 7 4 75.0
+3 3 0 25.0
+4 2 4 25.0
+5 1 3 40.0
+6 5 3 50.0
+7 6 2 50.0
+8 6 1 40.0
+9 6 5 60.0
+
+araigneeloup 
+cloporte
+earwig
+larve
+lithobie
+escargot
+debrisvegetaux
+lombric
+carabide
+
+araigneeloup.jpg
+cloporte.jpg
+earwig.jpg
+larve.jpg
+lithobie.jpg
+escargot.jpg
+debrisvegetaux.jpg
+lombric.jpg
+carabide.jpg
+
